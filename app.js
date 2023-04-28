@@ -18,21 +18,27 @@ let oneRound = (playerSelection, computerSelection = getComputerChoice(choiceArr
         return ("Tie!")
     }
     else if (playerChoice == 'rock' && computerSelection == 'scissors') {
+        playerScore += 1;
         return ("You win! Rock beats Scissors.");
     }
     else if (playerChoice == 'paper' && computerSelection == 'rock') {
+        playerScore += 1;
         return ("You win! Paper covers Rock.");
     }
     else if (playerChoice == 'scissors' && computerSelection == 'paper') {
+        playerScore += 1;
         return ("You win! Scissors cuts paper.");
     }
     else if (playerChoice == 'scissors' && computerSelection == 'rock') {
+        computerScore += 1;
         return ("You lose! Rock beats Scissors.");
     }
     else if (playerChoice == 'rock' && computerSelection == 'paper') {
+        computerScore += 1;
         return ("You lose! Paper covers Rock.");
     }
     else if (playerChoice == 'paper' && computerSelection == 'scissors') {
+        computerScore += 1;
         return ("You lose! Scissors cuts Paper.");
     }
 }
