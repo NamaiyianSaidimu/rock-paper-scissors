@@ -1,6 +1,10 @@
 // Create an array containing all the available choices:
 const choiceArray = ['rock', 'paper', 'scissors'];
 
+// Declaration of variables to store the scores of both parties:
+let playerScore = 0;
+let computerScore = 0;
+
 // A function that gets the choice of our computer:
 const getComputerChoice = (choices) => {
     return (choices[Math.floor(Math.random() * choices.length)]);
