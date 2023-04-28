@@ -43,3 +43,21 @@ let oneRound = (playerSelection, computerSelection = getComputerChoice(choiceArr
     }
 }
 // console.log(oneRound('scissORS'));
+
+function game () {
+    for (i = 1; i <= 5; i++) {
+        oneRound(playerSelection = prompt("rock, paper or scissors?", computerSelection = getComputerChoice(choiceArray).toLowerCase()));
+        console.log(`Player's Score: ${playerScore}`);
+        console.log(`Computer's Score: ${computerScore}`);
+    }
+    if (computerScore > playerScore) {
+        return ("You lose! Try again.")
+    }
+    else if (computerScore < playerScore) {
+        return ("You Win! Congratulations.")
+    }
+    else {
+        return ("It's a tie!")
+    }
+}
+console.log(game());
