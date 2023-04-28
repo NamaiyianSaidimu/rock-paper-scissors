@@ -1,5 +1,5 @@
 // Create an array containing all the available choices:
-const choiceArray = ['Rock', 'Paper', 'Scissors'];
+const choiceArray = ['rock', 'paper', 'scissors'];
 
 // A function that gets the choice of our computer:
 const getComputerChoice = (choices) => {
