@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sigmar', cursive;
+}
+
+body {
+    background-color: #00a36c;
+}
+
+.rps-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.rps-buttons button {
+    height: 200px;
+    width: 200px;
+    font-size: 100px;
+}
+
+.results {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 60px;
+    color: #adeade;
+}
