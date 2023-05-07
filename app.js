@@ -1,63 +1,68 @@
-// Create an array containing all the available choices:
-const choiceArray = ['rock', 'paper', 'scissors'];
+// Getting the rock button by selector:
+const rock = document.getElementById('rock');
+// Getting the paper button by selector:
+const paper = document.getElementById('paper');
+// Getting the scissors button by selector:
+const scissors = document.getElementById('scissors');
+// Getting the computer score by selector:
+const compScore = document.getElementById('computer-score');
+// Getting the player score by selector:
+const playScore = document.getElementById('player-score');
+// Getting the results div by selector:
+const results = document.querySelector('.results');
+
+const playerChoices =  [rock, paper, scissors];
 
 // Declaration of variables to store the scores of both parties:
-let playerScore = 0;
-let computerScore = 0;
+const gameScores = {computerScore: 0, playerScore: 0};
+
 
 // A function that gets the choice of our computer:
-const getComputerChoice = (choices) => {
-    return (choices[Math.floor(Math.random() * choices.length)]);
+const getComputerChoice = () => {
+    const choiceArray = ['rock', 'paper', 'scissors'];
+    const choiceNumber = Math.floor(Math.random() * 3);
+    return (choiceArray[choiceNumber]);
 }
-// console.log(getComputerChoice(choiceArray));
 
-let oneRound = (playerSelection, computerSelection = getComputerChoice(choiceArray).toLowerCase()) => {
-    //computerSelection = getComputerChoice(choiceArray).toLowerCase();
-    let playerChoice = playerSelection.toLowerCase();
-    if (playerChoice == computerSelection) {
+let getResult = (playerSelection, computerSelection) => {
+    if (playerSelection == computerSelection) {
         return ("Tie!")
     }
-    else if (playerChoice == 'rock' && computerSelection == 'scissors') {
-        playerScore += 1;
-        return ("You win! Rock beats Scissors.");
+    else if (playerSelection == 'rock' && computerSelection == 'scissors') {
+        gameScores.playerScore += 1;
     }
-    else if (playerChoice == 'paper' && computerSelection == 'rock') {
-        playerScore += 1;
-        return ("You win! Paper covers Rock.");
+    else if (playerSelection == 'paper' && computerSelection == 'rock') {
+        gameScores.playerScore += 1;
     }
-    else if (playerChoice == 'scissors' && computerSelection == 'paper') {
-        playerScore += 1;
-        return ("You win! Scissors cuts paper.");
-    }
-    else if (playerChoice == 'scissors' && computerSelection == 'rock') {
-        computerScore += 1;
-        return ("You lose! Rock beats Scissors.");
-    }
-    else if (playerChoice == 'rock' && computerSelection == 'paper') {
-        computerScore += 1;
-        return ("You lose! Paper covers Rock.");
-    }
-    else if (playerChoice == 'paper' && computerSelection == 'scissors') {
-        computerScore += 1;
-        return ("You lose! Scissors cuts Paper.");
-    }
-}
-// console.log(oneRound('scissORS'));
-
-function game () {
-    for (i = 1; i <= 5; i++) {
-        oneRound(playerSelection = prompt("rock, paper or scissors?", computerSelection = getComputerChoice(choiceArray).toLowerCase()));
-        console.log(`Player's Score: ${playerScore}`);
-        console.log(`Computer's Score: ${computerScore}`);
-    }
-    if (computerScore > playerScore) {
-        return ("You lose! Try again.")
-    }
-    else if (computerScore < playerScore) {
-        return ("You Win! Congratulations.")
+    else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+        gameScores.playerScore += 1;
     }
     else {
-        return ("It's a tie!")
+        gameScores.computerScore += 1;
+    }
+    compScore.textContent = `${gameScores.computerScore}`;
+    playScore.textContent = `${gameScores.playerScore}`;
+    if (gameScores.computerScore == 5) {
+        results.innerText = "GAME OVER! BETTER LUCK NEXT TIME..."
+    }
+    if (gameScores.playerScore == 5) {
+        results.innerText = "CONGRATULATIONS! YOU BROKE THE WORLD RECORD."
     }
 }
-// console.log(game());
+
+// Adding action to our buttons:
+function onClickButton(playerSelection) {
+    console.log(playerSelection);
+    const computerSelection = getComputerChoice();
+    console.log(computerSelection);
+    getResult(playerSelection, computerSelection);
+    console.log(gameScores.playerScore);
+    console.log(gameScores.computerScore);
+}
+
+// Looping through the buttons to add events
+function play () {
+    playerChoices.forEach(playerChoice =>
+        playerChoice.onclick = () => onClickButton(playerChoice.id));
+}
+console.log(play());
